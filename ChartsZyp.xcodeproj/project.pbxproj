@@ -138,6 +138,10 @@
 		DBC9DB402CC9BB84B76968C4 /* Description.swift in Sources */ = {isa = PBXBuildFile; fileRef = B137428B41C143D5115726C4 /* Description.swift */; };
 		DDE704689FDF2C0E0338488B /* CandleChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4785FEACAE4367F36FB8868 /* CandleChartData.swift */; };
 		DE0F434FE8C24C52B023370F /* Transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF475B9593B9898853814340 /* Transformer.swift */; };
+		E07FDF7723880C1E0043EE16 /* CircularRadarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07FDF7623880C1E0043EE16 /* CircularRadarChartView.swift */; };
+		E07FDF7B23880C6E0043EE16 /* CircularRadarChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07FDF7823880C6E0043EE16 /* CircularRadarChartRenderer.swift */; };
+		E07FDF7C23880C6E0043EE16 /* XAxisRendererCircularRadarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07FDF7923880C6E0043EE16 /* XAxisRendererCircularRadarChart.swift */; };
+		E07FDF7D23880C6E0043EE16 /* YAxisRendererCircularRadarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07FDF7A23880C6E0043EE16 /* YAxisRendererCircularRadarChart.swift */; };
 		E3B28EA1E21279DF3889BCE8 /* RadarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BA6B21CBDF77A15848994F /* RadarChartDataSet.swift */; };
 		E4B2F363414E84C4D4B8A885 /* BubbleChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EED352A98860E031F13AFB7 /* BubbleChartView.swift */; };
 		E50D291A6B6E69BF0B56A67C /* ChartBaseDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FE42E868A225C116537368 /* ChartBaseDataSet.swift */; };
@@ -305,6 +309,10 @@
 		DA2AA6CC89F809DCCD7605B4 /* IPieChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IPieChartDataSet.swift; path = Source/ChartsZyp/Data/Interfaces/IPieChartDataSet.swift; sourceTree = "<group>"; };
 		DD8ED233775EEC31243A6919 /* BubbleChartDataEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BubbleChartDataEntry.swift; path = Source/ChartsZyp/Data/Implementations/Standard/BubbleChartDataEntry.swift; sourceTree = "<group>"; };
 		DFB762958EE8E6521563665D /* ChartAnimationEasing.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChartAnimationEasing.swift; path = Source/ChartsZyp/Animation/ChartAnimationEasing.swift; sourceTree = "<group>"; };
+		E07FDF7623880C1E0043EE16 /* CircularRadarChartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularRadarChartView.swift; path = Source/ChartsZyp/ChartsZyp/CircularRadarChartView.swift; sourceTree = "<group>"; };
+		E07FDF7823880C6E0043EE16 /* CircularRadarChartRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CircularRadarChartRenderer.swift; path = Source/ChartsZyp/Renderers/CircularRadarChartRenderer.swift; sourceTree = "<group>"; };
+		E07FDF7923880C6E0043EE16 /* XAxisRendererCircularRadarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = XAxisRendererCircularRadarChart.swift; path = Source/ChartsZyp/Renderers/XAxisRendererCircularRadarChart.swift; sourceTree = "<group>"; };
+		E07FDF7A23880C6E0043EE16 /* YAxisRendererCircularRadarChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YAxisRendererCircularRadarChart.swift; path = Source/ChartsZyp/Renderers/YAxisRendererCircularRadarChart.swift; sourceTree = "<group>"; };
 		E120E76C6F1B5877D56126DD /* ChartData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChartData.swift; path = Source/ChartsZyp/Data/Implementations/Standard/ChartData.swift; sourceTree = "<group>"; };
 		E3F8BFF1CBC58D5B9DBFFB9B /* BarChartDataEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarChartDataEntry.swift; path = Source/ChartsZyp/Data/Implementations/Standard/BarChartDataEntry.swift; sourceTree = "<group>"; };
 		E64A75540C627E09080B402A /* Legend.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Legend.swift; path = Source/ChartsZyp/Components/Legend.swift; sourceTree = "<group>"; };
@@ -510,6 +518,7 @@
 		8C531E3F3C3DE5843C93C3DA /* ChartsZyp */ = {
 			isa = PBXGroup;
 			children = (
+				E07FDF7623880C1E0043EE16 /* CircularRadarChartView.swift */,
 				E783CFB4889A767C76510917 /* BarChartView.swift */,
 				45C6D3723C4E001B119CA0C8 /* BarLineChartViewBase.swift */,
 				4EED352A98860E031F13AFB7 /* BubbleChartView.swift */,
@@ -639,6 +648,9 @@
 		E7589D3E7C2BD2449960AD59 /* Renderers */ = {
 			isa = PBXGroup;
 			children = (
+				E07FDF7823880C6E0043EE16 /* CircularRadarChartRenderer.swift */,
+				E07FDF7923880C6E0043EE16 /* XAxisRendererCircularRadarChart.swift */,
+				E07FDF7A23880C6E0043EE16 /* YAxisRendererCircularRadarChart.swift */,
 				C75935E899183DDFA181E2CC /* AxisRendererBase.swift */,
 				75F279974FE650E57A061B09 /* BarChartRenderer.swift */,
 				5B1C588E9DF6FFD56D7ADF8E /* BarLineScatterCandleBubbleRenderer.swift */,
@@ -865,6 +877,7 @@
 				7C9CE6718D18859A35146098 /* BarLineScatterCandleBubbleChartData.swift in Sources */,
 				53A91F6F86740E26FE733639 /* BarLineScatterCandleBubbleChartDataSet.swift in Sources */,
 				E68CA3DC66EB638C956E09B8 /* BubbleChartData.swift in Sources */,
+				E07FDF7B23880C6E0043EE16 /* CircularRadarChartRenderer.swift in Sources */,
 				C09E91F67A4AC43C277E7D82 /* BubbleChartDataEntry.swift in Sources */,
 				63C0A21D145BFEDED5406E4D /* BubbleChartDataSet.swift in Sources */,
 				DDE704689FDF2C0E0338488B /* CandleChartData.swift in Sources */,
@@ -932,6 +945,8 @@
 				0577C2B38BCE4C871F262714 /* AnimatedZoomViewJob.swift in Sources */,
 				02A6E6E1A82A27A66B8D08C4 /* MoveViewJob.swift in Sources */,
 				9400725714D0DA707DDECD2E /* ViewPortJob.swift in Sources */,
+				E07FDF7D23880C6E0043EE16 /* YAxisRendererCircularRadarChart.swift in Sources */,
+				E07FDF7723880C1E0043EE16 /* CircularRadarChartView.swift in Sources */,
 				AEE9C4E4AC02B8FB3CD21975 /* ZoomViewJob.swift in Sources */,
 				ECECC58CEF03B1718F8267E8 /* AxisRendererBase.swift in Sources */,
 				23FA50B2730D8C7ACA091C4F /* BarChartRenderer.swift in Sources */,
@@ -948,6 +963,7 @@
 				795E100895C24049509F1EDE /* PieChartRenderer.swift in Sources */,
 				97AD2D4620AF917100F9C24A /* Platform+Accessibility.swift in Sources */,
 				69EA073EDF75D49ABE1715D6 /* RadarChartRenderer.swift in Sources */,
+				E07FDF7C23880C6E0043EE16 /* XAxisRendererCircularRadarChart.swift in Sources */,
 				CEF68F42A5390A73113F3663 /* Renderer.swift in Sources */,
 				796D3E63A37A95FD9D1AB9A1 /* ChevronDownShapeRenderer.swift in Sources */,
 				F103D90FC5DEEA0D7BB4407E /* ChevronUpShapeRenderer.swift in Sources */,

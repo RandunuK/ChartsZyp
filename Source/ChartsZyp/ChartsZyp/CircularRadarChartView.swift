@@ -41,8 +41,8 @@ open class CircularRadarChartView: PieRadarChartViewBase
     /// the object reprsenting the y-axis labels
     private var _yAxis: YAxis!
     
-    internal var _yAxisRenderer: YAxisRendererRadarChart!
-    internal var _xAxisRenderer: XAxisRendererRadarChart!
+    internal var _yAxisRenderer: YAxisRendererCircularRadarChart!
+    internal var _xAxisRenderer: XAxisRendererCircularRadarChart!
     
     public override init(frame: CGRect)
     {
@@ -60,10 +60,10 @@ open class CircularRadarChartView: PieRadarChartViewBase
         
         _yAxis = YAxis(position: .left)
         
-        renderer = RadarChartRenderer(chart: self, animator: _animator, viewPortHandler: _viewPortHandler)
+        renderer = CircularRadarChartRenderer(chart: self, animator: _animator, viewPortHandler: _viewPortHandler)
         
-        _yAxisRenderer = YAxisRendererRadarChart(viewPortHandler: _viewPortHandler, yAxis: _yAxis, chart: self)
-        _xAxisRenderer = XAxisRendererRadarChart(viewPortHandler: _viewPortHandler, xAxis: _xAxis, chart: self)
+        _yAxisRenderer = YAxisRendererCircularRadarChart(viewPortHandler: _viewPortHandler, yAxis: _yAxis, chart: self)
+        _xAxisRenderer = XAxisRendererCircularRadarChart(viewPortHandler: _viewPortHandler, xAxis: _xAxis, chart: self)
         
         self.highlighter = RadarHighlighter(chart: self)
     }
