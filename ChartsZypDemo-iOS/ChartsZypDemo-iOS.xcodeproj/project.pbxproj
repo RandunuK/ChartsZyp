@@ -136,6 +136,10 @@
 		5BEAED401ABC1AC60013F194 /* SinusBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAED3E1ABC1AC60013F194 /* SinusBarChartViewController.m */; };
 		5BEAED411ABC1AC60013F194 /* SinusBarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAED3F1ABC1AC60013F194 /* SinusBarChartViewController.xib */; };
 		B64D06EB1FB199130067418D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B64D06EA1FB199130067418D /* Launch Screen.storyboard */; };
+		E06E6C92238BED0D00D3D1BF /* CircularRadarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E6C91238BED0D00D3D1BF /* CircularRadarChartViewController.swift */; };
+		E06E6C93238BED0D00D3D1BF /* CircularRadarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E6C91238BED0D00D3D1BF /* CircularRadarChartViewController.swift */; };
+		E06E6C95238BEF8D00D3D1BF /* CircularRadarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E06E6C94238BEF8D00D3D1BF /* CircularRadarChartViewController.xib */; };
+		E06E6C96238BEF8D00D3D1BF /* CircularRadarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E06E6C94238BEF8D00D3D1BF /* CircularRadarChartViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -325,6 +329,8 @@
 		5BEAED3E1ABC1AC60013F194 /* SinusBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinusBarChartViewController.m; sourceTree = "<group>"; };
 		5BEAED3F1ABC1AC60013F194 /* SinusBarChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SinusBarChartViewController.xib; sourceTree = "<group>"; };
 		B64D06EA1FB199130067418D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E06E6C91238BED0D00D3D1BF /* CircularRadarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularRadarChartViewController.swift; sourceTree = "<group>"; };
+		E06E6C94238BEF8D00D3D1BF /* CircularRadarChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircularRadarChartViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +422,7 @@
 				225B364C1F6EBA410005B3D5 /* ScatterChartViewController.swift */,
 				225B36591F6EBA410005B3D5 /* SinusBarChartViewController.swift */,
 				225B364D1F6EBA410005B3D5 /* StackedBarChartViewController.swift */,
+				E06E6C91238BED0D00D3D1BF /* CircularRadarChartViewController.swift */,
 			);
 			path = Demos;
 			sourceTree = "<group>";
@@ -457,6 +464,7 @@
 				5BEAED171ABBFB340013F194 /* ScatterChartViewController.xib */,
 				5BEAED3F1ABC1AC60013F194 /* SinusBarChartViewController.xib */,
 				5BEAED1A1ABBFB340013F194 /* StackedBarChartViewController.xib */,
+				E06E6C94238BEF8D00D3D1BF /* CircularRadarChartViewController.xib */,
 			);
 			path = Demos;
 			sourceTree = "<group>";
@@ -658,12 +666,14 @@
 				TargetAttributes = {
 					225B361C1F6EB9A50005B3D5 = {
 						CreatedOnToolsVersion = 9.0;
+						DevelopmentTeam = LBRK643CC2;
 						LastSwiftMigration = 1000;
 					};
 					5B57BBAE1A9B26AA0036A6CC = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = LBRK643CC2;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -735,6 +745,7 @@
 				225B36891F6EBA640005B3D5 /* ScatterChartViewController.xib in Resources */,
 				225B36851F6EBA640005B3D5 /* PiePolylineChartViewController.xib in Resources */,
 				225B36771F6EBA640005B3D5 /* CandleStickChartViewController.xib in Resources */,
+				E06E6C96238BEF8D00D3D1BF /* CircularRadarChartViewController.xib in Resources */,
 				225B36871F6EBA640005B3D5 /* RadarChartViewController.xib in Resources */,
 				225B368A1F6EBA640005B3D5 /* SinusBarChartViewController.xib in Resources */,
 				225B36731F6EBA5E0005B3D5 /* RadarMarkerView.xib in Resources */,
@@ -771,6 +782,7 @@
 				0471CBFC1CA1090A00E52DBC /* PiePolylineChartViewController.xib in Resources */,
 				5BD8F0751AB89CE500566E05 /* LineChart1ViewController.xib in Resources */,
 				5BE673811D5B496500A87BA2 /* HalfPieChartViewController.xib in Resources */,
+				E06E6C95238BEF8D00D3D1BF /* CircularRadarChartViewController.xib in Resources */,
 				B64D06EB1FB199130067418D /* Launch Screen.storyboard in Resources */,
 				5BD47E661ABB424E008FCEC6 /* BarChartViewController.xib in Resources */,
 				5BDEDC421ABB7F73007D3A60 /* HorizontalBarChartViewController.xib in Resources */,
@@ -806,6 +818,7 @@
 				225B366B1F6EBA470005B3D5 /* RadarChartViewController.swift in Sources */,
 				225B36611F6EBA470005B3D5 /* LineChart1ViewController.swift in Sources */,
 				225B36691F6EBA470005B3D5 /* PieChartViewController.swift in Sources */,
+				E06E6C93238BED0D00D3D1BF /* CircularRadarChartViewController.swift in Sources */,
 				225B365B1F6EBA470005B3D5 /* MultipleLinesChartViewController.swift in Sources */,
 				225B365F1F6EBA470005B3D5 /* ColoredLineChartViewController.swift in Sources */,
 				225B36201F6EB9A50005B3D5 /* AppDelegate.swift in Sources */,
@@ -859,6 +872,7 @@
 				5BEAED121ABBFB2B0013F194 /* AnotherBarChartViewController.m in Sources */,
 				5BEAED311ABC18F00013F194 /* CubicLineChartViewController.m in Sources */,
 				5BEAED1D1ABBFB340013F194 /* StackedBarChartViewController.m in Sources */,
+				E06E6C92238BED0D00D3D1BF /* CircularRadarChartViewController.swift in Sources */,
 				5BD47E601ABB3C91008FCEC6 /* LineChart2ViewController.m in Sources */,
 				5B57BBB51A9B26AA0036A6CC /* main.m in Sources */,
 				5BEAED361ABC192F0013F194 /* RadarChartViewController.m in Sources */,
@@ -899,6 +913,7 @@
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = LBRK643CC2;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -930,6 +945,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LBRK643CC2;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -1049,12 +1065,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LBRK643CC2;
 				FRAMEWORK_SEARCH_PATHS = "$(SOURCE_ROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dcg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "ChartsZypDemo-iOS";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
 				SWIFT_OBJC_BRIDGING_HEADER = "Supporting Files/ChartsZypDemo-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
@@ -1069,12 +1089,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LBRK643CC2;
 				FRAMEWORK_SEARCH_PATHS = "$(SOURCE_ROOT)/../Carthage/Build/iOS";
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dcg.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "ChartsZypDemo-iOS";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos appletvsimulator appletvos";
 				SWIFT_OBJC_BRIDGING_HEADER = "Supporting Files/ChartsZypDemo-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
