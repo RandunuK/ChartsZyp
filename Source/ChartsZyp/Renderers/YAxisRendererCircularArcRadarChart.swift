@@ -22,9 +22,9 @@ import Cocoa
 
 open class YAxisRendererCircularArcRadarChart: YAxisRenderer
 {
-    private weak var chart: CircularRadarChartView?
+    private weak var chart: CircularRadarArcChartView?
     
-    @objc public init(viewPortHandler: ViewPortHandler, yAxis: YAxis?, chart: CircularRadarChartView)
+    @objc public init(viewPortHandler: ViewPortHandler, yAxis: YAxis?, chart: CircularRadarArcChartView)
     {
         super.init(viewPortHandler: viewPortHandler, yAxis: yAxis, transformer: nil)
         

@@ -14,9 +14,9 @@ import CoreGraphics
 
 open class XAxisRendererCircularArcRadarChart: XAxisRenderer
 {
-    @objc open weak var chart: CircularRadarChartView?
+    @objc open weak var chart: CircularRadarArcChartView?
     
-    @objc public init(viewPortHandler: ViewPortHandler, xAxis: XAxis?, chart: CircularRadarChartView)
+    @objc public init(viewPortHandler: ViewPortHandler, xAxis: XAxis?, chart: CircularRadarArcChartView)
     {
         super.init(viewPortHandler: viewPortHandler, xAxis: xAxis, transformer: nil)
         
