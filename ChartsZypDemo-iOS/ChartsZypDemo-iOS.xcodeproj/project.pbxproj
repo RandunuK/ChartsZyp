@@ -136,6 +136,10 @@
 		5BEAED401ABC1AC60013F194 /* SinusBarChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BEAED3E1ABC1AC60013F194 /* SinusBarChartViewController.m */; };
 		5BEAED411ABC1AC60013F194 /* SinusBarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BEAED3F1ABC1AC60013F194 /* SinusBarChartViewController.xib */; };
 		B64D06EB1FB199130067418D /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B64D06EA1FB199130067418D /* Launch Screen.storyboard */; };
+		E01CD629238D442800C1B3E6 /* CircularRadarArcChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01CD628238D442800C1B3E6 /* CircularRadarArcChartViewController.xib */; };
+		E01CD62A238D442800C1B3E6 /* CircularRadarArcChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E01CD628238D442800C1B3E6 /* CircularRadarArcChartViewController.xib */; };
+		E01CD62C238D451800C1B3E6 /* CircularRadarArcChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01CD62B238D451800C1B3E6 /* CircularRadarArcChartViewController.swift */; };
+		E01CD62D238D451800C1B3E6 /* CircularRadarArcChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01CD62B238D451800C1B3E6 /* CircularRadarArcChartViewController.swift */; };
 		E06E6C92238BED0D00D3D1BF /* CircularRadarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E6C91238BED0D00D3D1BF /* CircularRadarChartViewController.swift */; };
 		E06E6C93238BED0D00D3D1BF /* CircularRadarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06E6C91238BED0D00D3D1BF /* CircularRadarChartViewController.swift */; };
 		E06E6C95238BEF8D00D3D1BF /* CircularRadarChartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E06E6C94238BEF8D00D3D1BF /* CircularRadarChartViewController.xib */; };
@@ -329,6 +333,8 @@
 		5BEAED3E1ABC1AC60013F194 /* SinusBarChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SinusBarChartViewController.m; sourceTree = "<group>"; };
 		5BEAED3F1ABC1AC60013F194 /* SinusBarChartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SinusBarChartViewController.xib; sourceTree = "<group>"; };
 		B64D06EA1FB199130067418D /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E01CD628238D442800C1B3E6 /* CircularRadarArcChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircularRadarArcChartViewController.xib; sourceTree = "<group>"; };
+		E01CD62B238D451800C1B3E6 /* CircularRadarArcChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularRadarArcChartViewController.swift; sourceTree = "<group>"; };
 		E06E6C91238BED0D00D3D1BF /* CircularRadarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularRadarChartViewController.swift; sourceTree = "<group>"; };
 		E06E6C94238BEF8D00D3D1BF /* CircularRadarChartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CircularRadarChartViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -399,6 +405,7 @@
 		225B36431F6EBA410005B3D5 /* Demos */ = {
 			isa = PBXGroup;
 			children = (
+				E01CD62B238D451800C1B3E6 /* CircularRadarArcChartViewController.swift */,
 				225B36511F6EBA410005B3D5 /* AnotherBarChartViewController.swift */,
 				225B36581F6EBA410005B3D5 /* BarChartViewController.swift */,
 				225B364E1F6EBA410005B3D5 /* BubbleChartViewController.swift */,
@@ -465,6 +472,7 @@
 				5BEAED3F1ABC1AC60013F194 /* SinusBarChartViewController.xib */,
 				5BEAED1A1ABBFB340013F194 /* StackedBarChartViewController.xib */,
 				E06E6C94238BEF8D00D3D1BF /* CircularRadarChartViewController.xib */,
+				E01CD628238D442800C1B3E6 /* CircularRadarArcChartViewController.xib */,
 			);
 			path = Demos;
 			sourceTree = "<group>";
@@ -729,6 +737,7 @@
 				225B36741F6EBA640005B3D5 /* AnotherBarChartViewController.xib in Resources */,
 				225B36781F6EBA640005B3D5 /* ColoredLineChartViewController.xib in Resources */,
 				225B36791F6EBA640005B3D5 /* CombinedChartViewController.xib in Resources */,
+				E01CD62A238D442800C1B3E6 /* CircularRadarArcChartViewController.xib in Resources */,
 				225B367B1F6EBA640005B3D5 /* HalfPieChartViewController.xib in Resources */,
 				068A9B1A1FBBF355003CF1AD /* Launch Screen.storyboard in Resources */,
 				225B367A1F6EBA640005B3D5 /* CubicLineChartViewController.xib in Resources */,
@@ -766,6 +775,7 @@
 				5BEAED2D1ABC160F0013F194 /* CandleStickChartViewController.xib in Resources */,
 				5B613DB51D526EA8000F1E98 /* RadarMarkerView.xib in Resources */,
 				5BD47E611ABB3C91008FCEC6 /* LineChart2ViewController.xib in Resources */,
+				E01CD629238D442800C1B3E6 /* CircularRadarArcChartViewController.xib in Resources */,
 				5BEAED131ABBFB2B0013F194 /* AnotherBarChartViewController.xib in Resources */,
 				5BEAED411ABC1AC60013F194 /* SinusBarChartViewController.xib in Resources */,
 				5BEAED371ABC192F0013F194 /* RadarChartViewController.xib in Resources */,
@@ -833,6 +843,7 @@
 				225B365D1F6EBA470005B3D5 /* HalfPieChartViewController.swift in Sources */,
 				225B36701F6EBA470005B3D5 /* SinusBarChartViewController.swift in Sources */,
 				225B36681F6EBA470005B3D5 /* AnotherBarChartViewController.swift in Sources */,
+				E01CD62D238D451800C1B3E6 /* CircularRadarArcChartViewController.swift in Sources */,
 				225B36621F6EBA470005B3D5 /* NegativeStackedBarChartViewController.swift in Sources */,
 				225B363B1F6EBA040005B3D5 /* LargeValueFormatter.swift in Sources */,
 			);
@@ -872,6 +883,7 @@
 				5BEAED121ABBFB2B0013F194 /* AnotherBarChartViewController.m in Sources */,
 				5BEAED311ABC18F00013F194 /* CubicLineChartViewController.m in Sources */,
 				5BEAED1D1ABBFB340013F194 /* StackedBarChartViewController.m in Sources */,
+				E01CD62C238D451800C1B3E6 /* CircularRadarArcChartViewController.swift in Sources */,
 				E06E6C92238BED0D00D3D1BF /* CircularRadarChartViewController.swift in Sources */,
 				5BD47E601ABB3C91008FCEC6 /* LineChart2ViewController.m in Sources */,
 				5B57BBB51A9B26AA0036A6CC /* main.m in Sources */,

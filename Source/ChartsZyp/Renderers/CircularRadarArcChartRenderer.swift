@@ -24,9 +24,9 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         }
     }()
 
-    @objc open weak var chart: CircularRadarChartView?
+    @objc open weak var chart: CircularRadarArcChartView?
 
-    @objc public init(chart: CircularRadarChartView, animator: Animator, viewPortHandler: ViewPortHandler)
+    @objc public init(chart: CircularRadarArcChartView, animator: Animator, viewPortHandler: ViewPortHandler)
     {
         super.init(animator: animator, viewPortHandler: viewPortHandler)
         
@@ -42,6 +42,8 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         if radarData != nil
         {
             let mostEntries = radarData?.maxEntryCountSet?.entryCount ?? 0
+            let dataSetCount = radarData?.dataSets.count ?? 0
+            var i: Int = 0;
 
             // If we redraw the data, remove and repopulate accessible elements to update label values and frames
             self.accessibleChartElements.removeAll()
@@ -54,9 +56,12 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
                 self.accessibleChartElements.append(element)
             }
 
-            for set in radarData!.dataSets as! [IRadarChartDataSet] where set.isVisible
+            for set in radarData!.dataSets as! [IRadarChartDataSet]
             {
-                drawDataSet(context: context, dataSet: set, mostEntries: mostEntries)
+                i=i+1
+                if(set.isVisible){
+                    drawDataSet(context: context, dataSet: set, mostEntries: mostEntries, isLastDataSet: i==dataSetCount)
+                }
             }
         }
     }
@@ -67,7 +72,7 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
     ///   - context:
     ///   - dataSet:
     ///   - mostEntries: the entry count of the dataset with the most entries
-    internal func drawDataSet(context: CGContext, dataSet: IRadarChartDataSet, mostEntries: Int)
+    internal func drawDataSet(context: CGContext, dataSet: IRadarChartDataSet, mostEntries: Int, isLastDataSet: Bool)
     {
         guard let chart = chart else { return }
         
@@ -80,10 +85,15 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         
         // calculate the factor that is needed for transforming the value to pixels
         let factor = chart.factor
+        let rotationAngle = chart.rotationAngle;
         
         let center = chart.centerOffsets
+        let pOut = CGPoint.init(x: 0.0, y: 0.0)
+        var pOutPrevious = CGPoint.init(x: 0.0, y: 0.0)
+        let pOutFirstForLast = CGPoint.init(x: 0.0, y: 0.0)
         let entryCount = dataSet.entryCount
         let path = CGMutablePath()
+        let r = chart.radius;
         var hasMovedToPoint = false
 
         let prefix: String = chart.data?.accessibilityEntryLabelPrefix ?? "Item"
@@ -99,6 +109,8 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
 
         var accessibilityEntryElements: [NSUIAccessibilityElement] = []
 
+        //var oval: CGRect = CGRect.init();
+        
         for j in 0 ..< entryCount
         {
             guard let e = dataSet.entryForIndex(j) else { continue }
@@ -118,8 +130,38 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
             }
             else
             {
-                path.addLine(to: p)
+                let xNotFromCenter = abs(pOutPrevious.x - center.x) > 0
+                let yNotFromCenter = abs(pOutPrevious.y - center.y) > 0
+                let xIsNotCenter = abs(pOut.x - center.x) > 0
+                let yIsNotCenter = abs(pOut.y - center.y) > 0
+                let xIsNotPrevious = abs(pOutPrevious.x - pOut.x) > 0
+                let yIsNotPrevious = abs(pOutPrevious.y - pOut.y) > 0
+
+                if ((xNotFromCenter||yNotFromCenter) && (xIsNotCenter||yIsNotCenter)) {
+                    let radius = sqrt(pow(pOut.x - center.x, 2) + pow(pOut.y - center.y, 2))
+                    //oval = CGRect.init(x: center.x-radius, y: center.y-radius, width: center.x+radius, height: center.y+radius)
+                    let startAngle = sliceangle * (CGFloat)(j - 1) + rotationAngle
+                    let sweepAngle = sliceangle
+                    path.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: sweepAngle, clockwise: true)
+                }else if(isLastDataSet && j == entryCount - 1){
+                    let _xIsNotCenter  = abs(pOutFirstForLast.x - center.x) > 0
+                    let _yIsNotCenter  = abs(pOutFirstForLast.y - center.y) > 0
+                    
+                    if(_xIsNotCenter || _yIsNotCenter){
+                        let radius = sqrt(pow(pOut.x - center.x, 2) + pow(pOut.y - center.y, 2))
+                        let startAngle = sliceangle * (CGFloat)(j - 1) + rotationAngle
+                        let sweepAngle = sliceangle
+                        path.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: sweepAngle, clockwise: true)
+                    }
+                    
+                    
+                }else if(yIsNotPrevious || xIsNotPrevious){
+                    path.addLine(to: p)
+                }
             }
+
+            pOutPrevious.x = pOut.x
+            pOutPrevious.y = pOut.y
 
             let accessibilityLabel = accessibilityAxisLabelValueTuples[j].0
             let accessibilityValue = accessibilityAxisLabelValueTuples[j].1
@@ -534,7 +576,7 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
     }
 
     private func createAccessibleElement(withDescription description: String,
-                                         container: CircularRadarChartView,
+                                         container: CircularRadarArcChartView,
                                          dataSet: IRadarChartDataSet,
                                          modifier: (NSUIAccessibilityElement) -> ()) -> NSUIAccessibilityElement {
 
