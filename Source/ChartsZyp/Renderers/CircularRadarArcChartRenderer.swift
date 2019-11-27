@@ -93,7 +93,7 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         let pOutFirstForLast = CGPoint.init(x: 0.0, y: 0.0)
         let entryCount = dataSet.entryCount
         let path = CGMutablePath()
-        let r = chart.radius;
+        
         var hasMovedToPoint = false
 
         let prefix: String = chart.data?.accessibilityEntryLabelPrefix ?? "Item"
