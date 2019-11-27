@@ -781,7 +781,9 @@
 						ProvisioningStyle = Automatic;
 					};
 					F2749BD5443C1CB5FE2080C2 = {
+						DevelopmentTeam = LBRK643CC2;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -1078,7 +1080,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = LBRK643CC2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				"FRAMEWORK_SEARCH_PATHS[sdk=appletv*]" = (
 					"$(SRCROOT)/Carthage/Build/tvOS/",
@@ -1096,6 +1101,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcg.ChartsZypTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletvos appletvsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
@@ -1258,7 +1264,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LBRK643CC2;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				"FRAMEWORK_SEARCH_PATHS[sdk=appletv*]" = (
 					"$(SRCROOT)/Carthage/Build/tvOS/",
@@ -1276,6 +1285,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dcg.ChartsZypTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator appletvos appletvsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

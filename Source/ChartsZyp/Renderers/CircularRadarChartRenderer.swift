@@ -327,10 +327,13 @@ open class CircularRadarChartRenderer: LineRadarRenderer
             context.addArc(center: centerCircle, radius: radiusCircle, startAngle: 0.0, endAngle: .pi * 2.0, clockwise: true)
             context.strokePath()
             
-            if(data.getDataSetByIndex(0)?.highlightEnabled ?? false){
+            if(data.getDataSetByIndex(0)?.isVisible ?? false){
+                
                 context.setFillColor(chart.innerWebColor.cgColor)
+                
                 context.setAlpha(chart.webAlpha)
                 context.addArc(center: centerCircle, radius: radiusCircle/3, startAngle: 0.0, endAngle: .pi * 2.0, clockwise: true)
+                context.fillPath()
             }
             
             //removed because of the circular path
