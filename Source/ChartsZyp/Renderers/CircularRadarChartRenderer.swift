@@ -275,8 +275,7 @@ open class CircularRadarChartRenderer: LineRadarRenderer
     @objc open func drawCircularWeb(context: CGContext)
     {
         guard
-            let chart = chart,
-            let data = chart.data
+            let chart = chart
             else { return }
         
         let sliceangle = chart.sliceAngle
@@ -317,39 +316,31 @@ open class CircularRadarChartRenderer: LineRadarRenderer
         context.setAlpha(chart.webAlpha)
         
         let labelCount = chart.yAxis.entryCount
+        let centerCircle = CGPoint(x: center.x, y: center.y)
+        
+        let radarData = chart.data
         
         for j in 0 ..< labelCount
         {
             //newly add part for circle
             let r = CGFloat(chart.yAxis.entries[j] - chart.chartYMin) * factor
-            let centerCircle = CGPoint(x: center.x, y: center.y)
+            
             let radiusCircle = r
             context.addArc(center: centerCircle, radius: radiusCircle, startAngle: 0.0, endAngle: .pi * 2.0, clockwise: true)
             context.strokePath()
             
-            if(data.getDataSetByIndex(0)?.isVisible ?? false){
-                
-                context.setFillColor(chart.innerWebColor.cgColor)
-                
-                context.setAlpha(chart.webAlpha)
-                context.addArc(center: centerCircle, radius: radiusCircle/3, startAngle: 0.0, endAngle: .pi * 2.0, clockwise: true)
-                context.fillPath()
+            if radarData != nil{
+                for set in radarData!.dataSets as! [IRadarChartDataSet] where set.isVisible
+                {
+                    if(set.fillAlpha > 1.003){//android fillAplpha = 256
+                        context.setFillColor(chart.innerWebColor.cgColor)
+                        context.setAlpha(chart.webAlpha)
+                        context.addArc(center: centerCircle, radius: chart.radius/3, startAngle: 0.0, endAngle: .pi * 2.0, clockwise: true)
+                        context.fillPath()
+                    }
+                }
             }
             
-            //removed because of the circular path
-            //for i in 0 ..< data.entryCount
-            //{
-                //let r = CGFloat(chart.yAxis.entries[j] - chart.chartYMin) * factor
-                //let p1 = center.moving(distance: r, atAngle: sliceangle * CGFloat(i) + rotationangle)
-                //let p2 = center.moving(distance: r, atAngle: sliceangle * CGFloat(i + 1) + rotationangle)
-                
-                //_webLineSegmentsBuffer[0].x = p1.x
-                //_webLineSegmentsBuffer[0].y = p1.y
-                //_webLineSegmentsBuffer[1].x = p2.x
-                //_webLineSegmentsBuffer[1].y = p2.y
-                
-                //context.strokeLineSegments(between: _webLineSegmentsBuffer)
-            //}
         }
         
         context.restoreGState()

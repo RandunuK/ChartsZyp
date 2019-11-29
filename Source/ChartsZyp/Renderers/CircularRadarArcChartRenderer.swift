@@ -58,7 +58,7 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
 
             for set in radarData!.dataSets as! [IRadarChartDataSet]
             {
-                i=i+1
+                i+=1
                 if(set.isVisible){
                     drawDataSet(context: context, dataSet: set, mostEntries: mostEntries, isLastDataSet: i==dataSetCount)
                 }
@@ -75,6 +75,8 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
     internal func drawDataSet(context: CGContext, dataSet: IRadarChartDataSet, mostEntries: Int, isLastDataSet: Bool)
     {
         guard let chart = chart else { return }
+        let twoPi = CGFloat.init(2*Double.pi)
+        let oneDegreeInRadians = CGFloat.init(Double.pi/180) ;
         
         context.saveGState()
         
@@ -88,9 +90,9 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         let rotationAngle = chart.rotationAngle;
         
         let center = chart.centerOffsets
-        let pOut = CGPoint.init(x: 0.0, y: 0.0)
+       
         var pOutPrevious = CGPoint.init(x: 0.0, y: 0.0)
-        let pOutFirstForLast = CGPoint.init(x: 0.0, y: 0.0)
+        var pOutFirstForLast = CGPoint.init(x: 0.0, y: 0.0)
         let entryCount = dataSet.entryCount
         let path = CGMutablePath()
         
@@ -113,10 +115,13 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         
         for j in 0 ..< entryCount
         {
+            context.setFillColor(dataSet.fillColor.cgColor)
             guard let e = dataSet.entryForIndex(j) else { continue }
             
             let p = center.moving(distance: CGFloat((e.y - chart.chartYMin) * Double(factor) * phaseY),
                                   atAngle: sliceangle * CGFloat(j) * CGFloat(phaseX) + chart.rotationAngle)
+            
+            
             
             if p.x.isNaN
             {
@@ -126,42 +131,45 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
             if !hasMovedToPoint
             {
                 path.move(to: p)
+                if(isLastDataSet){
+                    pOutFirstForLast = p
+                }
                 hasMovedToPoint = true
             }
             else
             {
                 let xNotFromCenter = abs(pOutPrevious.x - center.x) > 0
                 let yNotFromCenter = abs(pOutPrevious.y - center.y) > 0
-                let xIsNotCenter = abs(pOut.x - center.x) > 0
-                let yIsNotCenter = abs(pOut.y - center.y) > 0
-                let xIsNotPrevious = abs(pOutPrevious.x - pOut.x) > 0
-                let yIsNotPrevious = abs(pOutPrevious.y - pOut.y) > 0
+                let xIsNotCenter = abs(p.x - center.x) > 0
+                let yIsNotCenter = abs(p.y - center.y) > 0
+                let xIsNotPrevious = abs(pOutPrevious.x - p.x) > 0
+                let yIsNotPrevious = abs(pOutPrevious.y - p.y) > 0
 
                 if ((xNotFromCenter||yNotFromCenter) && (xIsNotCenter||yIsNotCenter)) {
-                    let radius = sqrt(pow(pOut.x - center.x, 2) + pow(pOut.y - center.y, 2))
-                    //oval = CGRect.init(x: center.x-radius, y: center.y-radius, width: center.x+radius, height: center.y+radius)
-                    let startAngle = sliceangle * (CGFloat)(j - 1) + rotationAngle
-                    let sweepAngle = sliceangle
-                    path.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: sweepAngle, clockwise: true)
+                    let radius = sqrt(pow(p.x - center.x, 2) + pow(p.y - center.y, 2))
+                    let startAngle = ((sliceangle * (CGFloat)(j - 1) + rotationAngle) * oneDegreeInRadians).truncatingRemainder(dividingBy: (twoPi))
+                    let sweepAngle = sliceangle * oneDegreeInRadians
+                    let endAngle = (startAngle + sweepAngle).truncatingRemainder(dividingBy: (twoPi))
+                    //print("\(isLastDataSet) \(startAngle) \(endAngle) ");
+                    path.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
                 }else if(isLastDataSet && j == entryCount - 1){
                     let _xIsNotCenter  = abs(pOutFirstForLast.x - center.x) > 0
                     let _yIsNotCenter  = abs(pOutFirstForLast.y - center.y) > 0
                     
                     if(_xIsNotCenter || _yIsNotCenter){
-                        let radius = sqrt(pow(pOut.x - center.x, 2) + pow(pOut.y - center.y, 2))
-                        let startAngle = sliceangle * (CGFloat)(j - 1) + rotationAngle
-                        let sweepAngle = sliceangle
-                        path.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: sweepAngle, clockwise: true)
+                        let radius = sqrt(pow(p.x - center.x, 2) + pow(p.y - center.y, 2))
+                        let startAngle = ((sliceangle * (CGFloat)(j) + rotationAngle) * oneDegreeInRadians)//.truncatingRemainder(dividingBy: (twoPi))
+                        let sweepAngle = sliceangle * oneDegreeInRadians
+                        let endAngle = (startAngle + sweepAngle).truncatingRemainder(dividingBy: (twoPi))
+                        path.addArc(center: center, radius: radius, startAngle: startAngle, endAngle:endAngle , clockwise: false)
+                        //print("\(isLastDataSet) \(startAngle) \(endAngle) ");
                     }
-                    
-                    
                 }else if(yIsNotPrevious || xIsNotPrevious){
                     path.addLine(to: p)
                 }
             }
 
-            pOutPrevious.x = pOut.x
-            pOutPrevious.y = pOut.y
+            pOutPrevious = p
 
             let accessibilityLabel = accessibilityAxisLabelValueTuples[j].0
             let accessibilityValue = accessibilityAxisLabelValueTuples[j].1
@@ -233,6 +241,23 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
 
         context.restoreGState()
     }
+    
+    /// Draws the provided path in filled mode with the provided color and alpha.
+    @objc open override func drawFilledPath(context: CGContext, path: CGPath, fillColor: NSUIColor, fillAlpha: CGFloat)
+    {
+        context.saveGState()
+        context.beginPath()
+        context.addPath(path)
+        
+        // filled is usually drawn with less alpha
+        context.setAlpha(fillAlpha)
+        
+        context.setFillColor(fillColor.cgColor)
+        context.fillPath()
+        
+        context.restoreGState()
+    }
+    
     
     open override func drawValues(context: CGContext)
     {
@@ -309,27 +334,34 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
     
     open override func drawExtras(context: CGContext)
     {
-        drawCircularWeb(context: context)
+        drawCircularWebAndValuePercentages(context: context)
     }
     
     private var _webLineSegmentsBuffer = [CGPoint](repeating: CGPoint(), count: 2)
 
-    @objc open func drawCircularWeb(context: CGContext)
+    @objc open func drawCircularWebAndValuePercentages(context: CGContext)
     {
         guard
             let chart = chart,
-            let data = chart.data
+            let data = chart.data,
+            let radarData = chart.data as? RadarChartData
             else { return }
         
-        let sliceangle = chart.sliceAngle
-        
+        let twoPi = CGFloat.init(2*Double.pi)
+        let oneDegreeInRadians = CGFloat.init(Double.pi/180) ;
+
         context.saveGState()
         
         // calculate the factor that is needed for transforming the value to
         // pixels
         let factor = chart.factor
         let rotationangle = chart.rotationAngle
+        let colors = radarData.getColors()
+        let dataSets = radarData.dataSets as? Array<IRadarChartDataSet>
+        let sliceangle = chart.sliceAngle
         
+        let textPath = CGMutablePath()
+        //textPath.closeSubpath()
         let center = chart.centerOffsets
         
         // draw the web lines that come from the center
@@ -358,31 +390,44 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         context.setStrokeColor(chart.innerWebColor.cgColor)
         context.setAlpha(chart.webAlpha)
         
+        //let chartRadius = chart.radius
         let labelCount = chart.yAxis.entryCount
+        let colorCount = colors!.count as! Int
         
         for j in 0 ..< labelCount
         {
-            //newly add part for circle
-            let r = CGFloat(chart.yAxis.entries[j] - chart.chartYMin) * factor
-            let centerCircle = CGPoint(x: center.x, y: center.y)
-            let radiusCircle = r
-            context.addArc(center: centerCircle, radius: radiusCircle, startAngle: 0.0, endAngle: .pi * 2.0, clockwise: true)
-            context.strokePath()
-            
-            //removed because of the circular path
-            //for i in 0 ..< data.entryCount
-            //{
-                //let r = CGFloat(chart.yAxis.entries[j] - chart.chartYMin) * factor
-                //let p1 = center.moving(distance: r, atAngle: sliceangle * CGFloat(i) + rotationangle)
-                //let p2 = center.moving(distance: r, atAngle: sliceangle * CGFloat(i + 1) + rotationangle)
+            for i in 0 ..< colorCount
+            {
+                let r = CGFloat(chart.yAxis.entries[j] - chart.chartYMin) * factor
+
+                let p1 = center.moving(distance: r, atAngle: sliceangle * CGFloat(i) + rotationangle)
+                let p2 = center.moving(distance: r, atAngle: sliceangle * CGFloat(i + 1) + rotationangle)
+                
+                if(labelCount - 1 == j){
+                    textPath.closeSubpath()
+                    context.closePath()
+                    context.setFillColor(dataSets![i].fillColor.cgColor)
+                    context.setShouldAntialias(true)
+                    context.setAlpha(chart.webAlpha)
+                    let radius = r
+                    
+                    let sweepAngle = sliceangle * oneDegreeInRadians
+                    let startAngle = ((sliceangle * CGFloat.init(i) + rotationangle) * oneDegreeInRadians).truncatingRemainder(dividingBy: twoPi)
+                    let endAngle = (startAngle + sweepAngle).truncatingRemainder(dividingBy: twoPi)
+                    print("index: \(i) \(startAngle) \(endAngle) rad");
+                    print("index: \(i) \(startAngle/oneDegreeInRadians) \(endAngle/oneDegreeInRadians) deg");
+                    context.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+                    context.fillPath()
+                    context.closePath()
+                }
                 
                 //_webLineSegmentsBuffer[0].x = p1.x
                 //_webLineSegmentsBuffer[0].y = p1.y
                 //_webLineSegmentsBuffer[1].x = p2.x
                 //_webLineSegmentsBuffer[1].y = p2.y
                 
-                //context.strokeLineSegments(between: _webLineSegmentsBuffer)
-            //}
+               //context.strokeLineSegments(between: _webLineSegmentsBuffer)
+            }
         }
         
         context.restoreGState()
@@ -589,3 +634,4 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         return element
     }
 }
+
