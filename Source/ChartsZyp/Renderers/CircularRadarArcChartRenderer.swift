@@ -343,7 +343,6 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
     {
         guard
             let chart = chart,
-            let data = chart.data,
             let radarData = chart.data as? RadarChartData
             else { return }
         
@@ -377,12 +376,12 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
             let p = center.moving(distance: CGFloat(chart.yRange) * factor,
                                   atAngle: sliceangle * CGFloat(i) + rotationangle)
             
-            _webLineSegmentsBuffer[0].x = center.x
-            _webLineSegmentsBuffer[0].y = center.y
-            _webLineSegmentsBuffer[1].x = p.x
-            _webLineSegmentsBuffer[1].y = p.y
+            //_webLineSegmentsBuffer[0].x = center.x
+            //_webLineSegmentsBuffer[0].y = center.y
+            //_webLineSegmentsBuffer[1].x = p.x
+            //_webLineSegmentsBuffer[1].y = p.y
             
-            context.strokeLineSegments(between: _webLineSegmentsBuffer)
+            //context.strokeLineSegments(between: _webLineSegmentsBuffer)
         }
         
         // draw the inner-web
@@ -405,7 +404,7 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
                 
                 if(labelCount - 1 == j){
                     textPath.closeSubpath()
-                    context.closePath()
+                    //context.closePath()
                     context.setFillColor(dataSets![i].fillColor.cgColor)
                     context.setShouldAntialias(true)
                     context.setAlpha(chart.webAlpha)
@@ -417,6 +416,7 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
                     print("index: \(i) \(startAngle) \(endAngle) rad");
                     print("index: \(i) \(startAngle/oneDegreeInRadians) \(endAngle/oneDegreeInRadians) deg");
                     context.addArc(center: center, radius: radius, startAngle: startAngle, endAngle: endAngle, clockwise: false)
+                    context.addLine(to: center)
                     context.fillPath()
                     context.closePath()
                 }
