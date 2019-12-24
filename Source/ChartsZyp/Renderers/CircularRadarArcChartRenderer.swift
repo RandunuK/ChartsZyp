@@ -414,11 +414,11 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
                     value = value < 0 ? 0.0 : value
                     let valueString = String(format: "%.1f", value) + "%"
                     if(i>1 && i<4){
-                        centreArcPerpendicular(text: dataSet.label ?? "0.0%", context: context, radius: radius+legendHeight/2, angle: -(startAngle + 0.524), colour: dataSets![i].fillColor, font: UIFont.systemFont(ofSize: 14), clockwise: false, circleCenter: center)
-                        centreArcPerpendicular(text: valueString, context: context, radius: radius+(legendHeight*1.5), angle: -(startAngle + 0.524), colour: dataSets![i].fillColor, font: UIFont.systemFont(ofSize: 14), clockwise: false, circleCenter: center)
+                        centreArcPerpendicular(text: dataSet.label ?? "0.0%", context: context, radius: radius+legendHeight/2, angle: -(startAngle + 0.524), colour: dataSets![i].fillColor, font: NSUIFont.systemFont(ofSize: 14), clockwise: false, circleCenter: center)
+                        centreArcPerpendicular(text: valueString, context: context, radius: radius+(legendHeight*1.5), angle: -(startAngle + 0.524), colour: dataSets![i].fillColor, font: NSUIFont.systemFont(ofSize: 14), clockwise: false, circleCenter: center)
                     }else{
-                        centreArcPerpendicular(text: dataSet.label ?? "0.0%", context: context, radius: radius+legendHeight/2, angle: -(startAngle + 0.524), colour: dataSets![i].fillColor, font: UIFont.systemFont(ofSize: 14), clockwise: true, circleCenter: center)
-                        centreArcPerpendicular(text: valueString, context: context, radius: radius+(legendHeight*1.5), angle: -(startAngle + 0.524), colour: dataSets![i].fillColor, font: UIFont.systemFont(ofSize: 14), clockwise: true, circleCenter: center)
+                        centreArcPerpendicular(text: dataSet.label ?? "0.0%", context: context, radius: radius+legendHeight/2, angle: -(startAngle + 0.524), colour: dataSets![i].fillColor, font: NSUIFont.systemFont(ofSize: 14), clockwise: true, circleCenter: center)
+                        centreArcPerpendicular(text: valueString, context: context, radius: radius+(legendHeight*1.5), angle: -(startAngle + 0.524), colour: dataSets![i].fillColor, font: NSUIFont.systemFont(ofSize: 14), clockwise: true, circleCenter: center)
                     }
                     
                     context.closePath()
@@ -630,7 +630,7 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         return element
     }
     
-    func centreArcPerpendicular(text str: String, context: CGContext, radius r: CGFloat, angle theta: CGFloat, colour c: UIColor, font: UIFont, clockwise: Bool, circleCenter: CGPoint){
+    func centreArcPerpendicular(text str: String, context: CGContext, radius r: CGFloat, angle theta: CGFloat, colour c: NSUIColor, font: NSUIFont, clockwise: Bool, circleCenter: CGPoint){
         // *******************************************************
         // This draws the String str around an arc of radius r,
         // with the text centred at polar angle theta
@@ -671,7 +671,7 @@ open class CircularRadarArcChartRenderer: LineRadarRenderer
         // *******************************************************
         return 2 * asin(chord / (2 * radius))
     }
-    func centre(text str: String, context: CGContext, radius r: CGFloat, angle theta: CGFloat, colour c: UIColor, font: UIFont, slantAngle: CGFloat, circleCenter: CGPoint ) {
+    func centre(text str: String, context: CGContext, radius r: CGFloat, angle theta: CGFloat, colour c: NSUIColor, font: NSUIFont, slantAngle: CGFloat, circleCenter: CGPoint ) {
         // *******************************************************
         // This draws the String str centred at the position
         // specified by the polar coordinates (r, theta)
