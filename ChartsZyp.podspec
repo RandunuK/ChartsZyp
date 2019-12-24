@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "ChartsZyp"
-  s.version = "1.0.9"
+  s.version = "1.0.10"
   s.summary = "ChartsZyp is a powerful & easy to use chart library for iOS, tvOS and OSX (and Android)"
   s.homepage = "https://github.com/RandunuK/ChartsZyp"
   s.license = { :type => "Apache License, Version 2.0", :file => "LICENSE" }
