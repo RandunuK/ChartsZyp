@@ -233,7 +233,7 @@ open class CircularRadarChartRenderer: LineRadarRenderer
                 
                 guard let formatter = dataSet.valueFormatter else { continue }
                 
-                if dataSet.isDrawValuesEnabled
+                if (dataSet.isDrawValuesEnabled && e.y > 5)
                 {
                     ChartUtils.drawText(
                         context: context,
